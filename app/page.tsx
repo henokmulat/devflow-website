@@ -1,13 +1,28 @@
-import React from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Home = () => {
   return (
     <div>
       <h1 className="text-3xl ">Welcome to Next js 👋</h1>
-      <h1 className="text-3xl font-inter">Welcome to Next js (Inter) 👋</h1>
-      <h1 className="text-3xl font-space-grotesk">
-        Welcome to Next js (Space Grotesk) 👋
-      </h1>
+      <DropdownMenu>
+        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuItem>Subscription</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      ;
     </div>
   );
 };
