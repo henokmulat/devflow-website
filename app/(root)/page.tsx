@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,7 +8,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Home = () => {
+const Home = async () => {
+  const session = await auth();
+  console.log(session);
   return (
     <div>
       <h1 className="text-3xl ">Welcome to Next js 👋</h1>
