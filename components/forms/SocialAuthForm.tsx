@@ -2,20 +2,22 @@
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+// import { signIn } from "@/auth";
 import ROUTES from "@/constants/routes";
 import { toast } from "sonner";
-import { use } from "react";
+import { useRouter } from "next/navigation";
 
 const SocialAuthForm = () => {
+  const router = useRouter();
   const buttonClass =
     "background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5";
 
   const handleSignIn = async (provider: "github" | "google") => {
     try {
-      await signIn(provider, {
+      const result = await signIn(provider, {
         callbackUrl: ROUTES.HOME,
-        redirect: false,
       });
+      console.log("result----", result);
     } catch (error) {
       console.log(error);
       toast("Sign-in failed", {
@@ -39,6 +41,7 @@ const SocialAuthForm = () => {
         />
         <span>Log in with GitHub </span>
       </Button>
+
       <Button className={buttonClass} onClick={() => handleSignIn("google")}>
         <Image
           src="/icons/google.svg"
