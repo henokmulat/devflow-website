@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { ReactNode } from "react";
 
 const inter = localFont({
   src: "./fonts/interVF.ttf",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
