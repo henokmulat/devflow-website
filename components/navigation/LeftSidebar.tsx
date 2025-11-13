@@ -1,14 +1,14 @@
-"use client";
+// "use client";
 import NavLinks from "./navbar/NavLinks";
 import ROUTES from "@/constants/routes";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
 const LeftSidebar = () => {
   return (
     <section className="custom-scrollbar background-light900_dark200 light-border sticky left-0 top-0 h-screen flex flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
-      <div className="flex flex-1 gap-6">
+      <div className="flex flex-1 flex-col gap-6">
         <NavLinks />
       </div>
 
@@ -19,7 +19,7 @@ const LeftSidebar = () => {
         >
           <Link href={ROUTES.SIGN_IN}>
             <Image
-              src="icons/account.svg"
+              src="/icons/account.svg"
               alt="Account"
               width={20}
               height={20}
@@ -35,7 +35,7 @@ const LeftSidebar = () => {
         >
           <Link href={ROUTES.SIGN_UP}>
             <Image
-              src="icons/sign-up.svg"
+              src="/icons/sign-up.svg"
               alt="Account"
               width={20}
               height={20}
