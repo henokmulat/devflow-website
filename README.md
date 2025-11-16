@@ -1,36 +1,61 @@
-DevFlow – Developer Q&A Platform
+# DevFlow – Developer Q&A Platform
 
-DevFlow is a full-stack question and answer platform built with Next.js.
-It allows developers to post questions, receive answers from other users, and collaborate through a modern and efficient interface.
+![DevFlow](https://img.shields.io/badge/DevFlow-Q&A%20Platform-blue)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC)
 
-Features
+A modern, full-stack question and answer platform built for developers to collaborate, share knowledge, and solve coding challenges together.
 
-Users can post questions with titles, descriptions, tags, and optional code snippets.
+## 🚀 Features
 
-Other users can answer posted questions.
+### Core Functionality
+- **📝 Question Posting** - Post questions with titles, descriptions, and tags
+- **💬 Answer System** - Provide answers to other developers' questions
+- **🏷️ Tag Filtering** - Filter questions by specific technologies and topics
+- **🔍 Code Snippets** - Share code with syntax highlighting
 
-Upvote and downvote functionality for ranking questions and answers.
+### Community Features
+- **👍 Voting System** - Upvote/downvote questions and answers
+- **👤 User Profiles** - Personal profile pages with activity history
+- **🎯 Reputation System** - Earn reputation for helpful contributions
 
-Question filtering by tags.
+### Technical Features
+- **🔐 Authentication** - Secure user registration and login
+- **📱 Responsive Design** - Mobile-first responsive interface
+- **⚡ Performance** - Optimized for fast loading and smooth interactions
 
-User authentication and profile pages.
+## 🛠️ Technology Stack
 
-Modern, responsive interface built using Tailwind CSS.
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Custom components with Headless UI
 
-API routes for managing questions, answers, and users.
+### Backend
+- **Runtime**: Node.js
+- **API**: Next.js API Routes
+- **Authentication**: NextAuth.js
+- **Database ORM**: Prisma
+- **Database**: PostgreSQL / MongoDB
 
-Technology Stack
+### Development Tools
+- **State Management**: React Query / SWR
+- **Form Handling**: React Hook Form
+- **Validation**: Zod
+- **Deployment**: Vercel
 
-Next.js (App Router)
+## 📦 Installation
 
-TypeScript
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL or MongoDB
+- npm or yarn
 
-Tailwind CSS
+### Setup Instructions
 
-Prisma or Mongoose
-
-MongoDB or PostgreSQL
-
-NextAuth or JWT
-
-React Query or SWR
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/henokmulat/devflow-website.git
+   cd devflow-website
