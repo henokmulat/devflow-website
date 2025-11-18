@@ -1,28 +1,50 @@
 import { auth } from "@/auth";
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import Link from "next/link";
 
-const Home = async () => {
-  // const session = await auth();
-  // console.log("session----", session);
-  const questions = [
-    {
-      _id: "1",
-      title: "How to learn React",
-      description: "I want to learn React, can anyone help me?",
-      tags: [
-        { _id: "1", name: "React" },
-        { _id: "2", name: "Javascript" },
-      ],
-      author: { _id: "1", name: "John doe" },
-      upvotes: 10,
-      answers: 5,
-      views: 100,
-      createdAt: new Date(),
-    },
-  ];
+const questions = [
+  {
+    _id: "1",
+    title: "How to learn React",
+    description: "I want to learn React, can anyone help me?",
+    tags: [
+      { _id: "1", name: "React" },
+      { _id: "2", name: "Javascript" },
+    ],
+    author: { _id: "1", name: "John doe" },
+    upvotes: 10,
+    answers: 5,
+    views: 100,
+    createdAt: new Date(),
+  },
+  {
+    _id: "2",
+    title: "How to learn Javascript",
+    description: "I want to learn React, can anyone help me?",
+    tags: [
+      { _id: "1", name: "React" },
+      { _id: "2", name: "Javascript" },
+    ],
+    author: { _id: "1", name: "John doe" },
+    upvotes: 10,
+    answers: 5,
+    views: 100,
+    createdAt: new Date(),
+  },
+];
+
+interface SearchParams {
+  searchParams: Promise<{ [key: string]: string }>;
+}
+const Home = async ({ searchParams }: SearchParams) => {
+  const { query = "" } = await searchParams;
+  const filteredQuestions = questions.filter((question) =>
+    question.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <>
       <section className="flex w-full flex-col-reverse sm:flex-row justify-between gap-4 sm:items-center">
@@ -42,8 +64,12 @@ const Home = async () => {
           otherClasses="flex-1"
         />
       </section>
-      HomeFilter
-      <div className="mt-10 flex w-full flex-col gap-6"></div>
+      <HomeFilter />
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {filteredQuestions.map((question) => (
+          <h1 key={question._id}>{question.title}</h1>
+        ))}
+      </div>
     </>
   );
 };
