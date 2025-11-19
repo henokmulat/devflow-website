@@ -40,10 +40,16 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 const Home = async ({ searchParams }: SearchParams) => {
-  const { query = "" } = await searchParams;
-  const filteredQuestions = questions.filter((question) =>
-    question.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const { query = "", filter = "" } = await searchParams;
+  const filteredQuestions = questions.filter((question) => {
+    const matchesQuery = query
+      ? question.title.toLowerCase().includes(query.toLowerCase())
+      : true;
+    const matchesFilter = filter
+      ? question.tags[0].name?.toLowerCase() === filter.toLowerCase()
+      : true;
+    return matchesQuery && matchesFilter;
+  });
 
   return (
     <>
