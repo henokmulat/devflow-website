@@ -7,6 +7,7 @@ import importPlugin from "eslint-plugin-import";
 import n from "eslint-plugin-n";
 import promise from "eslint-plugin-promise";
 import tailwindcss from "eslint-plugin-tailwindcss";
+import { overwrite } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -68,6 +69,12 @@ const eslintConfig = [
 
       // Tailwind plugin rules
       "tailwindcss/no-custom-classname": "off",
+    },
+    overrides: {
+      files: ["*.ts", "*.tsx "],
+      rules: {
+        "no-undef": "off",
+      },
     },
   },
   {
