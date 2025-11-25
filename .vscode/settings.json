@@ -33,5 +33,5 @@
     "next-env.d.ts": true
     // "**/components.json": true
   },
-  "cSpell.words": ["devflow"]
+  "cSpell.words": ["devflow", "downvotes", "upvotes"]
 }
