@@ -1,4 +1,5 @@
 import { model, Schema, models } from "mongoose";
+import { type } from "os";
 
 export interface IUser {
   name: string;
@@ -13,11 +14,11 @@ export interface IUser {
 
 const UserSchema = new Schema(
   {
-    name: { String, required: true },
+    name: { type: String, required: true },
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     bio: { type: String },
-    image: { type: String, required: true },
+    image: { type: String },
     location: { type: String },
     portfolio: { type: String },
     reputation: { type: Number, default: 0 },
