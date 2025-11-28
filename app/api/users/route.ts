@@ -3,7 +3,6 @@ import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-error";
 import dbConnect from "@/lib/mongoose";
 import { UserSchema } from "@/lib/validations";
-import { error } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -18,7 +17,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    dbConnect();
+    await dbConnect();
     const body = await request.json();
     const validatedData = UserSchema.safeParse(body);
     if (!validatedData.success) {
