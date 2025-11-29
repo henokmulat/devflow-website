@@ -1,0 +1,10 @@
+export interface SignInWithOAuthParams {
+  provider: "github" | "google";
+  providerAccountId: string;
+  user: {
+    name: string;
+    image: string;
+    email: string;
+    username: string;
+  };
+}
