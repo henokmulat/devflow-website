@@ -22,11 +22,13 @@ import {
 import { Button } from "../ui/button";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
-  onSubmit: (data: T) => Promise<{ success: boolean }>;
+  onSubmit: (data: T) => Promise<ActionResponse>;
   formType: "SIGN_IN" | "SIGN_UP";
 }
 
@@ -36,13 +38,32 @@ const AuthForm = <T extends FieldValues>({
   formType,
   onSubmit,
 }: AuthFormProps<T>) => {
+  const router = useRouter();
   const form = useForm<T>({
     resolver: zodResolver(schema as any),
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async () => {
+  const handleSubmit: SubmitHandler<T> = async (data) => {
     //TODO: Authenticate user
+    const result = (await onSubmit(data)) as ActionResponse;
+    if (result?.success) {
+      toast({
+        title: "Success",
+        description:
+          formType === "SIGN_IN"
+            ? "Signed In Successfully"
+            : "Signed Up Successfully",
+      });
+      router.push(ROUTES.HOME);
+    } else {
+      toast({
+        title: `Error ${result?.status}`,
+        description: result?.error?.message,
+        variant: "destructive",
+      });
+    }
+    console.log("FORM DATA SENT TO SERVER:", data);
   };
   const buttonText = formType == "SIGN_IN" ? "Sign In" : "Sign Up";
 
@@ -52,11 +73,11 @@ const AuthForm = <T extends FieldValues>({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="mt-10 space-y-6"
       >
-        {Object.keys(defaultValues).map((field) => (
+        {Object.keys(defaultValues).map((key) => (
           <FormField
-            key={field}
+            key={key}
             control={form.control}
-            name={field as Path<T>}
+            name={key as Path<T>}
             render={({ field }) => (
               <FormItem className="flex w-full flex-col gap-2.5">
                 <FormLabel className="paragraph-medium text-dark400_light700">
