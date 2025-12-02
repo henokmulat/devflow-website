@@ -25,7 +25,8 @@ export const api = {
       fetchHandler(`${API_BASE_URL}/users`, {
         timeout: 5000,
       }),
-    getById: (id: string) => fetchHandler(`${API_BASE_URL}/users/${id}`),
+    getById: (id: string) =>
+      fetchHandler(`${API_BASE_URL}/users/${id}`, { timeout: 5000 }),
     getByEmail: (email: string) =>
       fetchHandler(`${API_BASE_URL}/users/email`, {
         method: "POST",
@@ -54,6 +55,7 @@ export const api = {
       fetchHandler(`${API_BASE_URL}/accounts/provider`, {
         method: "POST",
         body: JSON.stringify({ providerAccountId }),
+        timeout: 5000,
       }),
     create: (accountData: Partial<IAccount>) =>
       fetchHandler(`${API_BASE_URL}/accounts`, {
